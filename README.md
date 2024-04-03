@@ -1,86 +1,89 @@
-# Decentralized Image Upload and Sharing
+## Decentralized Drive
 
-This project facilitates decentralized image upload and sharing on the blockchain using Solidity for the smart contract and React for the front-end interface. It enables users to securely upload images to IPFS (InterPlanetary File System) and share access with specified users through smart contract functionality.
+### Overview
+Our project aims to develop a decentralized alternative to traditional cloud storage services like Google Drive. By leveraging blockchain technology, we prioritize data control, privacy, and security while providing efficient file sharing capabilities.
 
-Here is the video in English - [Decentralize Google Drive](https://youtu.be/M-KRLlHG_zs?si=rD7I-fH-P8kGiwwf)
+### Technologies Used
 
-Here is the video in Hindi - [Decentralize Google Drive](https://youtu.be/fghqq3-P3x0?si=CVMpHFTW3-fa3R3A)
+- **Frontend Development with React.js**: We utilize React.js to create an intuitive user interface, enabling users to interact with the application seamlessly.
+- **Smart Contract Development with Hardhat**: Hardhat is utilized as our Ethereum development environment for constructing resilient smart contracts that govern storage and access control logic. These smart contracts are authored in Solidity.
+- **Interacting with Ethereum using Ether.js**: Ether.js simplifies communication with the Ethereum blockchain, facilitating various operations such as file uploading, access control, and file sharing.
+- **IPFS**: For storing data in decentralized manner.
+### Features 
+- **User Registration and Authentication:**
+  - Secure account creation and authentication enabled through blockchain technology for transparency and immutability.
+  
+- **Decentralized Storage:**
+  - Utilization of decentralized storage system distributes user files across multiple network nodes, reducing single points of failure and enhancing data availability.
 
-## Features
+- **Data Control and Privacy:**
+  - Complete user control over data ensured with cryptographic techniques for privacy and security.
+  - Smart contracts govern access control, allowing users to define permissions and selectively share files.
 
-- **Decentralized Storage:** Images are uploaded to IPFS, ensuring decentralized and immutable storage.
-- **Smart Contract:** Utilizes Solidity smart contracts on the Ethereum blockchain for access control and ownership management.
-- **Access Control:** Users can grant or revoke access to their uploaded images to specific individuals through the smart contract.
+- **Data Integrity and Security:**
+  - Blockchain ensures data integrity and security by storing cryptographic hashes of uploaded files, enabling verification and preventing tampering.
 
-## Technologies Used
+- **Efficient File Sharing:**
+  - Streamlined file sharing directly between users facilitated by smart contracts managing access permissions.
 
-- **Solidity:** Smart contract development for ownership and access control.
-- **React:** Front-end interface for uploading images and managing access.
-- **IPFS:** Decentralized storage protocol for hosting uploaded images.
+- **Cost-Effectiveness:**
+  - Blockchain technology reduces costs associated with centralized cloud storage by allowing users to contribute unused storage resources and earn incentives or pay only for utilized storage.
 
-## Usage
 
-### Installation
 
-1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/decentralized-image-upload.git
-   ```
-2. Install dependencies for the hardhat:
 
-   ```bash
-   # Navigate to the root directory
-   cd Dgdrive3.0
-   # Install hardhat dependencies
-   npm install
-   ```
-3. Compile the smart contract for artifacts:
+### Project Components
+1. Smart Contract:
 
-   ```bash
-   # Compile Smart Contract
-   npx hardhat compile
-   ```
-4. Deploy the Solidity smart contract to an Ethereum testnet or local development environment.
-   ```bash
-   # Deploy Smart Contract
-   npx hardhat run scripts/deploy.js --network <network-name>
-   ```
-5. Install dependencies for the React front end:
-   ```bash
-   # Navigate to the React client directory
-   cd client 
-   # Install React dependencies
-   npm install
-   ```
-6. Run the react application:
-   ```bash
-   # Start React Application
-   npm start
-   ```
-   
-### Configuration
+- **User Access Control:** 
+  - The contract allows users to grant or revoke access to their uploaded files by other addresses.
+  - Access is managed through the `allow` and `disallow` functions, where users can specify which addresses have permission to access their files.
 
-1. Set up environment variables:
+- **File Uploading and Storage:**
+  - Users can upload files by calling the `add` function, providing the URL of the file to be stored.
+  - The contract stores uploaded files associated with each user's address.
 
-   - Obtain API keys for Pinata to interact with IPFS.
-   - Update the React component (FileUpload.js) with your Pinata API keys.
-     
-### Usage
+- **Access Management:**
+  - The contract maintains a list of addresses with access permissions for each user through the `accessList` mapping.
+  - Users can query the access permissions granted to their files by calling the `shareAccess` function.
 
-Once the setup and configuration are complete, follow these steps to utilize the decentralized image upload and sharing system:
+- **Data Privacy and Security:**
+  - Access to files is restricted to authorized addresses, ensuring data privacy and security.
+  - Access permissions are stored on the blockchain, providing transparency and immutability.
 
-1. **Install Metamask:**
-   - Ensure Metamask is installed and configured in your browser for Ethereum interactions.
+- **Ownership Tracking:**
+  - The contract tracks ownership of files through the `ownership` mapping, allowing users to manage access rights effectively.
 
-2. **Update Contract Address:**
-   - After smart contract deployment, make sure to update the contract address in `App.js` within the React application.
+Overall, the Upload smart contract offers a decentralized solution for secure file uploading and access management, leveraging blockchain technology to ensure data integrity and user control.
+   ![image](https://github.com/Abchoudhary2512/Decentralised_Drive/assets/97343691/4605b47c-aa80-4d45-9433-3e710d54e19f)
 
-3. **Upload Image before "Get Data":**
-   - Click "Get Data" only after uploading an image on Pinata. Otherwise, it will throw an error stating "You don't have access".
 
-4. **Accessing Other User Images:**
-   - Use the "Get Data" button to access other users' images. Input the user's address in the designated box, but remember, you can only access their images if they've granted you access through the smart contract. Otherwise, it will throw an error saying "You don't have access".
+2. **User Registration, Authentication, and Data Storage:**
 
-These steps will ensure smooth navigation and utilization of the system while maintaining access control and avoiding potential errors.
+Users can securely create accounts and authenticate themselves within our application. Leveraging blockchain technology ensures transparency and immutability in both user registration and authentication processes. Additionally, we utilize IPFS (InterPlanetary File System) in conjunction with Pinata services for decentralized data storage. This allows us to store data in a distributed manner, enhancing security and availability while ensuring data integrity.
+![image](https://github.com/Abchoudhary2512/Decentralised_Drive/assets/97343691/10d46087-e4cd-45da-aa3e-71bc8bf89851)
 
+3. **Displaying Data for a Specific Address:**
+
+Our application provides a feature to display data specifically associated with a particular address. Users can view their own uploaded files or files shared with them by others. This functionality ensures privacy and security by restricting access to data only to authorized individuals. Users can confidently access and manage their data knowing that it is securely stored and accessible only to them or those they have granted permission to.
+
+![image](https://github.com/Abchoudhary2512/Decentralised_Drive/assets/97343691/d63d42f3-9b10-4822-a1f5-062811d88f7c)
+
+4. **Granting Access to Another Address:**
+
+Our application allows users to securely grant access to their stored data to another Ethereum address. Through smart contracts, users can define permissions and selectively share files with specific addresses. This feature ensures controlled data sharing, maintaining privacy and security while facilitating collaboration and information exchange among authorized users. By leveraging blockchain technology, access permissions are transparent, immutable, and enforceable, enhancing trust and accountability in data sharing processes.
+![image](https://github.com/Abchoudhary2512/Decentralised_Drive/assets/97343691/32ffe79b-7ceb-46fb-8674-e2b0af27551c)
+
+
+
+
+## Hardhat Commands
+Try running some of the following tasks:
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat ignition deploy ./ignition/modules/Lock.js
+```
