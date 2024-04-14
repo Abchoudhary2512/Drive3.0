@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./FileUpload.css";
+import { MdImageSearch } from "react-icons/md";
 const FileUpload = ({ contract, account, provider }) => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("No image selected");
@@ -49,17 +50,17 @@ const FileUpload = ({ contract, account, provider }) => {
     <div className="top">
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="file-upload" className="choose">
-          Choose Image
+          <MdImageSearch size={90} style={{color:'white'}}/>
         </label>
         <input
-          disabled={!account}
+          disabled={account}
           type="file"
           id="file-upload"
           name="data"
           onChange={retrieveFile}
         />
         <span className="textArea">Image: {fileName}</span>
-        <button type="submit" className="upload" disabled={!file}>
+        <button type="submit" className="button-32" disabled={file}>
           Upload File
         </button>
       </form>
