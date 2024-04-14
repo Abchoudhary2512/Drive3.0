@@ -5,6 +5,8 @@ import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
 import Typewriter from "typewriter-effect";
+import { ImCross } from "react-icons/im";
+import Eth from './assets/Ethereum.png'
 
 import "./App.css";
 
@@ -52,101 +54,61 @@ function App() {
       <div className="bgImage">
         <img src="https://www.pngall.com/wp-content/uploads/13/Grid-PNG-File.png" />
       </div>
-      
-      <div class='animation-example'>
-        <div class='item'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+
+      <div className='animation-example'>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item -type2'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item -type2'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item -type2'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='item -type2'>
-          <div class='line'></div>
-          <div class='dot'></div>
-          <div class='circle'></div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
         </div>
-        <div class='center'>
-          <div class='circle'></div>
-          <div class='circle'></div>
-          <div class='circle'></div>
-        </div>
-      </div>
-      <div class="pozycja">
-        <div class="srodek kolor-tla">
-          <div id="qlogo">
-            <div class="poziomq">
-              <figure class="liscie">
-                <span class="lisc-lewy"><span class="after"></span></span>
-                <span class="lisc-lewy drugi"><span class="after"></span></span>
-                <span class="lisc-prawy"><span class="after"></span></span>
-                <span class="lisc-prawy drugi"><span class="after"></span></span>
-                <span class="lodyga"></span>
-              </figure>
-              <figure class="rece">
-                <span class="reka reka-lewa"></span>
-                <span class="reka reka-prawa"></span>
-              </figure>
-              <figure class="cialo">
-                <span class="twarz">
-                  <span class="oczy">
-                    <span class="oko oko-lewe"></span>
-                    <span class="oko oko-prawe"></span>
-                  </span>
-                  <span class="piegi">
-                    <span class="pieg pieg-lewy"></span>
-                    <span class="pieg pieg-prawy"></span>
-                  </span>
-                  <span class="buzia">
-                    <span class="gardlo"></span>
-                    <span class="zuby"></span>
-                  </span>
-                </span>
-              </figure>
-              <figure class="nogi">
-                <span class="noga-lewa"></span>
-                <span class="noga-prawa"></span>
-              </figure>
-            </div>
-            <figure class="cien"></figure>
-            <figure class="tekst">Hover Me!</figure>
-          </div>
+        <div className='center'>
+          <div className='circle'></div>
+          <div className='circle'></div>
+          <div className='circle'></div>
         </div>
       </div>
+      <div className="ethereum"><img src={Eth} /></div>
       <div className="navbar">
         <div className="siteName">
           <Typewriter
             onInit={(typewriter) => {
               typewriter
-                .typeString("D-Drive 4.O")
+                .typeString("D-Drive 3.O")
                 .pauseFor(1000)
                 .start();
             }}
@@ -158,20 +120,20 @@ function App() {
               Share
             </button>
           )}
-          {modalOpen && (
-            <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
-          )}
         </div>
       </div>
-
-      <div className="App">
+      {modalOpen && (<div className="modelxyz">
+        <div className="icons"><ImCross style={{color:'red'}} onClick={()=>setModalOpen(false)}/></div>
+        <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
+      </div>)}
+      {!modalOpen && (<div className="App">
 
         <div className="connectedOrNot">
           <p style={{ color: account ? "green" : "red" }}>
             <span>Account :</span> {account ? account : "Not connected"}
           </p>
         </div>
-
+          <div className="xyz1234">
         <div className="cardNav">
           <button
             style={{ backgroundColor: showFileUpload ? "green" : "white" }}
@@ -187,8 +149,8 @@ function App() {
             <Display contract={contract} account={account} />
           )}
         </div>
-
-      </div>
+          </div>
+      </div>)}
     </div>
   );
 }

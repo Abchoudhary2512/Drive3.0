@@ -53,14 +53,14 @@ const FileUpload = ({ contract, account, provider }) => {
           <MdImageSearch size={90} style={{color:'white'}}/>
         </label>
         <input
-          disabled={account}
+          disabled={!account}
           type="file"
           id="file-upload"
           name="data"
           onChange={retrieveFile}
         />
         <span className="textArea">Image: {fileName}</span>
-        <button type="submit" className="button-32" disabled={file}>
+        <button type="submit" className="button-32" disabled={!file}>
           Upload File
         </button>
       </form>

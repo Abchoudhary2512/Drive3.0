@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Display.css";
 const Display = ({ contract, account }) => {
   const [data, setData] = useState("");
+  const [image, setImage]= useState();
   const getdata = async () => {
     let dataArray;
     const Otheraddress = document.querySelector(".address").value;
@@ -22,26 +23,25 @@ const Display = ({ contract, account }) => {
       const str_array = str.split(",");
       // console.log(str);
       // console.log(str_array);
-      const images = str_array.map((item, i) => {
-        return (
-          <a href={item} key={i} target="_blank">
-            <img
-              key={i}
-              src={`https://gateway.pinata.cloud/ipfs/${item.substring(6)}`}
-              alt="new"
-              className="image-list"
-            ></img>
-          </a>
-        );
-      });
-      setData(images);
+      setImage(str_array);
     } else {
       alert("No image to display");
     }
   };
   return (
     <>
-      <div className="image-list">{data}</div>
+      <div className="imagesList">
+      {image && image.map((item, i) => (
+         <div className="singleImage"><a href={item} target="_blank"> <img
+            key={i}
+            src={item}
+            alt="new"
+            className="image-list"
+          ></img>
+          </a>
+          </div>
+        ))}
+      </div>
       <div>
       <input
         type="text"
