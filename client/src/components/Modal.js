@@ -1,43 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import "./Modal.css";
-
 const Modal = ({ setModalOpen, contract }) => {
-  const [addressValue, setAddressValue] = useState("");
-  
   const sharing = async () => {
-    try {
-      await contract.allow(addressValue);
-      setModalOpen(false);
-    } catch (error) {
-      console.error("Error sharing:", error);
-      // Handle error as needed, e.g., display an error message to the user
-    }
+    const address = document.querySelector(".address").value;
+    await contract.allow(address);
+    setModalOpen(false);
   };
-
   useEffect(() => {
     const accessList = async () => {
-      if (contract) {
-        try {
-          const addressList = await contract.shareAccess();
-          const select = document.querySelector("#selectNumber");
-          select.innerHTML = ""; // Clear existing options
+      const addressList = await contract.shareAccess();
+      let select = document.querySelector("#selectNumber");
+      const options = addressList;
 
-          addressList.forEach((address) => {
-            const option = document.createElement("option");
-            option.textContent = address;
-            option.value = address;
-            select.appendChild(option);
-          });
-        } catch (error) {
-          console.error("Error retrieving access list:", error);
-          // Handle error as needed
-        }
+      for (let i = 0; i < options.length; i++) {
+        let opt = options[i];
+        let e1 = document.createElement("option");
+        e1.textContent = opt;
+        e1.value = opt;
+        select.appendChild(e1);
       }
     };
-    
-    accessList();
+    contract && accessList();
   }, [contract]);
-
   return (
     <>
       <div className="modalBackground">
@@ -46,10 +30,9 @@ const Modal = ({ setModalOpen, contract }) => {
           <div className="body">
             <input
               type="text"
-              value={addressValue}
-              onChange={(e) => setAddressValue(e.target.value)}
+              className="address"
               placeholder="Enter Address"
-            />
+            ></input>
           </div>
           <form id="myForm">
             <select id="selectNumber">
@@ -57,15 +40,19 @@ const Modal = ({ setModalOpen, contract }) => {
             </select>
           </form>
           <div className="footer">
-            <button id="cancelBtn" onClick={() => setModalOpen(false)}>
+            <button
+              onClick={() => {
+                setModalOpen(false);
+              }}
+              id="cancelBtn"
+            >
               Cancel
             </button>
-            <button onClick={sharing}>Share</button>
+            <button onClick={() => sharing()}>Share</button>
           </div>
         </div>
       </div>
     </>
   );
 };
-
 export default Modal;
