@@ -4,10 +4,15 @@ import { ethers } from "ethers";
 import FileUpload from "./components/FileUpload";
 import Display from "./components/Display";
 import Modal from "./components/Modal";
+import Typewriter from "typewriter-effect";
+import { ImCross } from "react-icons/im";
+import Eth from './assets/Ethereum.png'
+
 import "./App.css";
 
 function App() {
   const [account, setAccount] = useState("");
+  const [showFileUpload, setShowFileUpload] = useState(true);
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -45,33 +50,108 @@ function App() {
     provider && loadProvider();
   }, []);
   return (
-    <>
-      {!modalOpen && (
-        <button className="share" onClick={() => setModalOpen(true)}>
-          Share
-        </button>
-      )}
-      {modalOpen && (
-        <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
-      )}
-
-      <div className="App">
-        <h1 style={{ color: "white" }}>Gdrive 3.0</h1>
-        <div class="bg"></div>
-        <div class="bg bg2"></div>
-        <div class="bg bg3"></div>
-
-        <p style={{ color: "white" }}>
-          Account : {account ? account : "Not connected"}
-        </p>
-        <FileUpload
-          account={account}
-          provider={provider}
-          contract={contract}
-        ></FileUpload>
-        <Display contract={contract} account={account}></Display>
+    <div className="conatainerxyz">
+      <div className="bgImage">
+        <img src="https://www.pngall.com/wp-content/uploads/13/Grid-PNG-File.png" />
       </div>
-    </>
+
+      <div className='animation-example'>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='item -type2'>
+          <div className='line'></div>
+          <div className='dot'></div>
+          <div className='circle'></div>
+        </div>
+        <div className='center'>
+          <div className='circle'></div>
+          <div className='circle'></div>
+          <div className='circle'></div>
+        </div>
+      </div>
+      <div className="ethereum"><img src={Eth} /></div>
+      <div className="navbar">
+        <div className="siteName">
+          <Typewriter
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("D-Drive 3.O")
+                .pauseFor(1000)
+                .start();
+            }}
+          />
+        </div>
+        <div>
+          {!modalOpen && (
+            <button className="share" onClick={() => setModalOpen(true)}>
+              Share
+            </button>
+          )}
+        </div>
+      </div>
+      {modalOpen && (<div className="modelxyz">
+        <div className="icons"><ImCross style={{color:'red'}} onClick={()=>setModalOpen(false)}/></div>
+        <Modal setModalOpen={setModalOpen} contract={contract}></Modal>
+      </div>)}
+      {!modalOpen && (<div className="App">
+
+        <div className="connectedOrNot">
+          <p style={{ color: account ? "green" : "red" }}>
+            <span>Account :</span> {account ? account : "Not connected"}
+          </p>
+        </div>
+          <div className="xyz1234">
+        <div className="cardNav">
+          <button
+            style={{ backgroundColor: showFileUpload ? "green" : "white" }}
+            className="button-1" onClick={() => setShowFileUpload(true)}>Upload File</button>
+          <button
+            style={{ backgroundColor: !showFileUpload ? "green" : "white" }}
+            className="button-2" onClick={() => setShowFileUpload(false)}>Get Files</button>
+        </div>
+        <div className="cardContainer">
+          {showFileUpload ? (
+            <FileUpload account={account} provider={provider} contract={contract} />
+          ) : (
+            <Display contract={contract} account={account} />
+          )}
+        </div>
+          </div>
+      </div>)}
+    </div>
   );
 }
 
